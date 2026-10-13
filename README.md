@@ -1,29 +1,90 @@
 # Library Management Platform
 
-## Project Overview
-The Library Management Platform is a project designed to manage library resources and simplify book borrowing and returning.
+## 1. Project Overview
 
-## Objectives
-- Manage books and their availability.
-- Support user authentication and role-based access control.
-- Record book issue and return transactions.
-- Calculate fines for overdue books.
-- Provide basic administrative reports.
+The Library Management Platform aims to simplify library operations by providing a centralized system for managing books, borrowing, returns, and fines.
 
- 
+This project is being developed as part of Unit 1: Product Engineering and Design Thinking.
 
-## Project Structure
-- `app/` - Application modules, database components, and tests.
-- `docs/` - Project documentation.
-- `docker/` - Docker configuration.
-- `kubernetes/` - Kubernetes deployment configuration.
-- `terraform/` - Infrastructure as code.
-- `ansible/` - Configuration automation.
-- `monitoring/` - Monitoring configuration.
-- `.github/workflows/` - GitHub Actions workflows.
+## 2. Business Problem
 
-## Technology Roadmap
-Git, GitHub, Java, Maven, Docker, Kubernetes, Terraform, Ansible, Prometheus, and Grafana.
+Traditional library processes may rely on manual records, making it difficult to track book availability, borrowing history, returns, and overdue fines efficiently.
 
-## Project Status
-Initial project structure created.
+The proposed platform aims to improve accuracy, accessibility, and operational efficiency.
+
+## 3. Project Objectives
+
+- Organize library book information.
+- Support book searching and availability tracking.
+- Plan borrowing and return management.
+- Define overdue fine calculation requirements.
+- Establish a foundation for future automation and monitoring.
+
+## 4. Technology Stack
+
+- Java 21
+- Apache Maven
+- Docker
+- Git and GitHub
+- Ubuntu on AWS EC2
+
+## 5. Current Implementation
+
+- Java application created.
+- Maven project configured.
+- Application packaged and tested in Docker.
+- Product engineering documentation added.
+- System architecture documented.
+
+Database integration, a complete user interface, and advanced library features remain planned work.
+
+## 6. Repository Structure
+
+- `app/` — Java application source code and related folders.
+- `docs/reports/` — Product vision, requirements, business justification, stakeholder analysis, design thinking, and roadmap documents.
+- `docs/diagrams/` — System architecture documentation.
+- `Dockerfile` — Docker image build instructions.
+- `pom.xml` — Maven project configuration.
+
+## 7. Run the Application
+
+Build the application with Maven:
+
+```bash
+mvn clean package
+```
+
+Run the Java application:
+
+```bash
+java -cp target/classes com.library.App
+```
+
+Build the Docker image:
+
+```bash
+sudo docker build -t library-management-platform:1.0 .
+```
+
+Run the Docker container:
+
+```bash
+sudo docker run --rm library-management-platform:1.0
+```
+
+## 8. Documentation
+
+Refer to `docs/reports/` for the business justification, product vision, requirements specifications, stakeholder and persona analysis, design thinking report, and engineering roadmap.
+
+## 9. Future Enhancements
+
+- Database integration
+- User authentication and role-based access
+- Book catalog and search interface
+- Borrowing and return workflows
+- Fine management and notifications
+- Automated delivery and monitoring
+
+## 10. Repository
+
+GitHub: https://github.com/PradnyaLakariya/library-management-platform
