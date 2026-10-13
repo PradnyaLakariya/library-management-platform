@@ -10,6 +10,8 @@ The Library Management Platform is a project designed to manage library resource
 - Calculate fines for overdue books.
 - Provide basic administrative reports.
 
+ 
+
 ## Project Structure
 - `app/` - Application modules, database components, and tests.
 - `docs/` - Project documentation.
