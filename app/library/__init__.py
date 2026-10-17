@@ -1,4 +1,6 @@
 from flask import Flask, jsonify, request
+from prometheus_client import Counter, generate_latest, CONTENT_TYPE_LATEST
+from prometheus_client import REGISTRY
 
 
 def create_app():
@@ -18,6 +20,21 @@ def create_app():
             "available": True,
         },
     ]
+
+    requests_total = Counter(
+        "library_http_requests_total",
+        "Total requests to the library application",
+        ["endpoint", "method"],
+        registry=REGISTRY,
+    )
+
+    @app.before_request
+    def count_request():
+        endpoint = request.endpoint or "unknown"
+        requests_total.labels(
+            endpoint=endpoint,
+            method=request.method,
+        ).inc()
 
     @app.get("/")
     def home():
@@ -47,6 +64,12 @@ def create_app():
 
         books.append(book)
         return jsonify(book), 201
+
+    @app.get("/metrics")
+    def metrics():
+        return generate_latest(REGISTRY), 200, {
+            "Content-Type": CONTENT_TYPE_LATEST
+        }
 
     return app
 
