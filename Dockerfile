@@ -1,10 +1,13 @@
-FROM eclipse-temurin:21-jdk
+FROM python:3.14-slim
 
 WORKDIR /app
 
-COPY pom.xml .
-COPY app/src ./app/src
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-RUN apt-get update && apt-get install -y maven && mvn clean package && apt-get clean && rm -rf /var/lib/apt/lists/*
+COPY app/ ./app/
+COPY tests/ ./tests/
 
-CMD ["java", "-cp", "target/classes", "com.library.App"]
+EXPOSE 5000
+
+CMD ["python", "-m", "flask", "--app", "app.library", "run", "--host=0.0.0.0", "--port=5000"]
