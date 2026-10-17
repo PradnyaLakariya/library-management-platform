@@ -1,2 +1,10 @@
 target/
 *.class
+
+# Python generated files
+.coverage
+__pycache__/
+.pytest_cache/
+.venv/
+*.pyc
+flask.log
