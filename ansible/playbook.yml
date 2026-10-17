@@ -1,0 +1,30 @@
+---
+- name: Verify Library Management Platform
+  hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+    - name: Ensure Docker service is running
+      ansible.builtin.service:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Check the library application container
+      ansible.builtin.command:
+        argv:
+          - docker
+          - inspect
+          - --format
+          - "{{ '{{' }}.State.Running{{ '}}' }}"
+          - library-python-app
+      register: container_status
+      changed_when: false
+
+    - name: Confirm application container is running
+      ansible.builtin.assert:
+        that:
+          - container_status.stdout == "true"
+        success_msg: "Library application container is running."
+        fail_msg: "Library application container is not running."
